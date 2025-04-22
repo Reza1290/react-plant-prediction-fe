@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const response = await fetch("http://localhost:5000/history", {
+    const response = await fetch(`${process.env.ENDPOINT || "http://localhost:5000"}/history`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
     const backendForm = new FormData();
     backendForm.append("image", file);
 
-    const response = await fetch("http://localhost:5000/predict", {
+    const response = await fetch(`${process.env.ENDPOINT || "http://localhost:5000"}/predict`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

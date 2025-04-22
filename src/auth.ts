@@ -10,7 +10,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
-        const res = await fetch("http://localhost:5000/login", {
+        const res = await fetch(`${process.env.ENDPOINT || "http://localhost:5000"}/login`, {
           method: 'POST',
           body: JSON.stringify(credentials),
           headers: { "Content-Type": "application/json" }

@@ -96,7 +96,7 @@ function HistorySection({ predictionHistory: localHistory, clearHistory }: Histo
           <div key={i} className="border rounded-lg overflow-hidden shadow-sm">
             <div className="h-48 overflow-hidden bg-gray-200">
               <img
-                src={`http://localhost:5000/storage/${item.image_path || item.imageUrl}`}
+                src={`${process.env.ENDPOINT || "http://localhost:5000"}/storage/${item.image_path || item.imageUrl}`}
                 alt={item.plant_name}
                 className="w-full h-full object-contain"
                 onError={(e) => {
