@@ -7,8 +7,8 @@ export default function Alert() {
             Login Credential
           </h3>
           <div className="mt-2 text-sm text-yellow-700">
-            <p>Username: nextauth@example.com</p>
-            <p>Password: password</p>
+            <p>Username: admin</p>
+            <p>Password: test1234</p>
           </div>
         </div>
       </div>
