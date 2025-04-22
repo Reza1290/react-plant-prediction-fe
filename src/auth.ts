@@ -21,10 +21,11 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
           return { ...user, id: user.id || user.username }; 
         }
         return null;
-      }
+      },
+      
     })
   ],
-
+  trustHost: false,
   pages: {
     signIn: "/auth/signin",
     signOut: "/auth/signout",
