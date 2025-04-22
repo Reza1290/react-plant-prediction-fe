@@ -25,7 +25,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       
     })
   ],
-  trustHost: false,
+  trustHost: true,
   pages: {
     signIn: "/auth/signin",
     signOut: "/auth/signout",
