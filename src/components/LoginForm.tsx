@@ -5,6 +5,7 @@ import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 
 import Alert from "@/components/Alert";
+import { redirect } from "next/navigation";
 
 type LoginFormProps = {
   username: string;
@@ -12,10 +13,16 @@ type LoginFormProps = {
 };
 
 const handleSubmitForm = (data: { username: string; password: string }) => {
-  signIn("credentials", {
-    username: data.username,
-    password: data.password,
-  });
+  try {
+    signIn("credentials", {
+      username: data.username,
+      password: data.password,
+    });
+  } catch (e) {
+
+  } finally {
+    redirect('/dashboard')
+  }
 };
 
 export default function LoginForm() {
@@ -50,7 +57,7 @@ export default function LoginForm() {
             <input
               {...register("username", {
                 required: "username is required",
-                
+
               })}
               id="username"
               name="username"

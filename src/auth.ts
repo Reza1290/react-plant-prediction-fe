@@ -3,6 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   providers: [
+    
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
@@ -25,6 +26,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       
     })
   ],
+  
   trustHost: true,
   pages: {
     signIn: "/auth/signin",
@@ -38,9 +40,9 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       return true; 
     },
 
-    async redirect({ baseUrl }) {
-      return `${baseUrl}/dashboard`;
-    },
+    // async redirect({ baseUrl }) {
+    //   return `${baseUrl}/dashboard`;
+    // },
 
     async jwt({ token, user, account }) {
       if (user?.access_token) {
