@@ -8,7 +8,7 @@ export default function Alert() {
           </h3>
           <div className="mt-2 text-sm text-yellow-700">
             <p>Username: admin</p>
-            <p>Password: test1234</p>
+            <p>Password: admin1234</p>
           </div>
         </div>
       </div>
