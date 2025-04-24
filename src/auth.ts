@@ -19,7 +19,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         const user = await res.json();
         console.log(res)
         if (res.ok && user?.access_token) { 
-          return { ...user, id: user.id || user.username }; 
+          return { ...user, id: user.id || user.username || "guest" }; 
         }
         return null;
       },
