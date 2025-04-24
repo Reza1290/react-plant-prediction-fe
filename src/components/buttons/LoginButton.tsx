@@ -38,7 +38,7 @@ export default function LoginButton({
     <button
       type="button"
       className="border shadow-1 rounded-md py-3 px-6 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-      onClick={() => signIn(auth?.id as string, {callbackUrl: process.env.NEXTAUTH_URL})}
+      onClick={() => signIn(auth?.id as string)}
     >
       {auth ? (
         <div className="flex items-center">
