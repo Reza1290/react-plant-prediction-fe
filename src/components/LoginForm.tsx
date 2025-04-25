@@ -17,11 +17,12 @@ const handleSubmitForm = (data: { username: string; password: string }) => {
     signIn("credentials", {
       username: data.username,
       password: data.password,
-    });
+      redirectTo: '/dashboard'
+    },);
   } catch (e) {
 
   } finally {
-    redirect('/dashboard')
+    // redirect('/dashboard')
   }
 };
 
