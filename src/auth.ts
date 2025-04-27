@@ -8,10 +8,12 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       name: 'Credentials',
       credentials: {
         username: { label: "Username", type: "text", placeholder: "username" },
-        password: { label: "Password", type: "password" }
+        password: { label: "Password", type: "password" },
+        isRegisterPage : {label: "isRegisterPage", type: "number"}
       },
       async authorize(credentials, req) {
-        const res = await fetch(`${process.env.ENDPOINT || "http://localhost:5000"}/login`, {
+        console.log(credentials)
+        const res = await fetch(`${process.env.ENDPOINT || "http://localhost:5000"}/${Number(credentials.isRegisterPage) ? "register" : "login"}`, {
           method: 'POST',
           body: JSON.stringify(credentials),
           headers: { "Content-Type": "application/json" }

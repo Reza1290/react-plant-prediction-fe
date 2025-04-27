@@ -39,7 +39,7 @@ function PredictionSection({ addPrediction }: PredictionSectionProps) {
     }
   }, [webcamRef, dataURLtoFile]);
 
-  
+
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -106,28 +106,24 @@ function PredictionSection({ addPrediction }: PredictionSectionProps) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
-      <h2 className="text-2xl font-semibold mb-6">Plant Prediction</h2>
+    <div className="bg-white rounded-lg p-6">
 
-      {!isCameraOpen && (
+      {!isCameraOpen && (<>
+
+        {
+          !preview && (
+            <div className='flex flex-col gap-5'>
+              <h1 className="text-green-700/80 text-3xl font-bold text-start mb-8 lg:mb-0 flex w-full">
+                Selamat Datang
+              </h1>
+              <img src="/images/hero.png" alt="" />
+              <p className="text-green-700/80 text-xl font-bold text-start mb-8 lg:mb-0 flex w-full">Jelajahi dunia tanaman dan temukan apakah itu herbal dengan mudah</p>
+            </div>
+
+          )
+        }
+
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="border-2 border-dashed border-gray-300 rounded-lg p-4">
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleFileChange}
-              className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
-            />
-          </div>
-
-          <button
-            type="button"
-            className="w-full py-2 px-4 rounded-md bg-blue-600 hover:bg-blue-700 text-white"
-            onClick={handleOpenCamera}
-          >
-            Take a Photo
-          </button>
-
           {preview && (
             <div className="mt-4">
               <p className="text-sm text-gray-500 mb-2">Selected Image Preview:</p>
@@ -141,6 +137,25 @@ function PredictionSection({ addPrediction }: PredictionSectionProps) {
             </div>
           )}
 
+          <div className="border-2 border-dashed border-gray-300 rounded-lg p-4">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+              className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
+            />
+          </div>
+
+          <button
+            type="button"
+            className="w-full py-2 px-4 rounded-md bg-green-600 hover:bg-green-700 text-white"
+            onClick={handleOpenCamera}
+          >
+            {preview ? "Retake Photo" : "Take a Photo"}
+          </button>
+
+
+
           {error && (
             <div className="p-3 bg-red-50 text-red-700 rounded-md border border-red-200">
               {error}
@@ -150,20 +165,21 @@ function PredictionSection({ addPrediction }: PredictionSectionProps) {
           <button
             type="submit"
             disabled={!selectedFile || isLoading}
-            className={`w-full py-2 px-4 rounded-md ${
-              !selectedFile || isLoading
-                ? 'bg-gray-300 cursor-not-allowed'
-                : 'bg-green-600 hover:bg-green-700 text-white'
-            }`}
+            className={`w-full py-2 px-4 rounded-md ${!selectedFile || isLoading
+              ? 'bg-gray-300 cursor-not-allowed'
+              : 'bg-green-600 hover:bg-green-700 text-white'
+              }`}
           >
             {isLoading ? 'Predicting...' : 'Predict'}
           </button>
         </form>
+      </>
+
       )}
 
       {isCameraOpen && (
         <div className="space-y-4">
-          <div className="relative w-full aspect-video rounded-lg overflow-hidden">
+          <div className="relative w-full h-full rounded-lg overflow-hidden">
             <Webcam
               audio={false}
               ref={webcamRef}
@@ -172,7 +188,7 @@ function PredictionSection({ addPrediction }: PredictionSectionProps) {
             />
             <button
               onClick={capture}
-              className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-blue-500 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg"
+              className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-green-500 hover:bg-green-700 text-white rounded-full p-4 shadow-lg"
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.38-.605.928-.605 1.504a3.7 3.7 0 003.907 3.907 6.729 6.729 0 01-2.17 2.283m4.772 0a6.729 6.729 0 01-2.17-2.283 3.7 3.7 0 003.907-3.907c.576-.576 1.124-1.124 1.504-1.504a2.31 2.31 0 011.059-1.646 6.48 6.48 0 00-3.477 3.97A6.48 6.48 0 009.74 9.916c.38.38.604.928.604 1.504a2.31 2.31 0 01-1.646 1.059m0 0a6.729 6.729 0 013.97-3.477 6.48 6.48 0 00-3.97 3.477c-.17.17-.318.343-.438.523a2.31 2.31 0 01-1.059 1.646m6.48 6.48 0 003.477-3.97c.17-.17.318-.343.438-.523a2.31 2.31 0 011.646-1.059m-3.477 3.97a6.729 6.729 0 012.17 2.283 3.7 3.7 0 00-3.907 3.907c-.576.576-1.124 1.124-1.504 1.504a2.31 2.31 0 01-1.059 1.646 6.48 6.48 0 003.477-3.97m1.404-3.175c.38-.38.605-.928.605-1.504a3.7 3.7 0 00-3.907-3.907 6.729 6.729 0 012.17-2.283m-4.772 0a6.729 6.729 0 012.17 2.283 3.7 3.7 0 00-3.907 3.907c-.576.576-1.124 1.124-1.504 1.504a2.31 2.31 0 011.646 1.059m0 0a6.48 6.48 0 003.97-3.477c.17-.17.318-.343.438-.523a2.31 2.31 0 011.059 1.646m-3.97 3.477a6.48 6.48 0 003.97-3.477c-.17.17-.318.343-.438.523a2.31 2.31 0 01-1.646 1.059" />

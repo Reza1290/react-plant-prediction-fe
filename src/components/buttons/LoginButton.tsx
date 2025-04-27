@@ -37,7 +37,7 @@ export default function LoginButton({
   return (
     <button
       type="button"
-      className="border shadow-1 rounded-md py-3 px-6 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+      className="border bg-green-600 text-white border-none rounded-md py-3 px-6 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
       onClick={() => signIn(auth?.id as string)}
     >
       {auth ? (
@@ -46,7 +46,7 @@ export default function LoginButton({
           Sign In with {auth.name as string}
         </div>
       ) : (
-        "Login"
+        "Mulai"
       )}
     </button>
   );
